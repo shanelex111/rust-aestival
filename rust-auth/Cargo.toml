@@ -13,3 +13,4 @@ config = { version = "0.15.11", features = ["yaml"] }
 serde = { version = "1.0.219", features = ["derive"] }
 anyhow = "1.0.98"
 once_cell = "1.21.3"
+redis = { version = "0.32.1", features = ["cluster-async","tokio-comp"] }
