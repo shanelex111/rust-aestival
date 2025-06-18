@@ -1,7 +1,9 @@
 use config::Config;
-use sea_orm::{ConnectOptions, Database};
+use sea_orm::{ConnectOptions, Database, DatabaseConnection};
 use serde::Deserialize;
+use tokio::sync::OnceCell;
 
+pub static DB: OnceCell<DatabaseConnection> = OnceCell::const_new();
 #[derive(Debug, Deserialize)]
 struct MysqlConfig {
     dsn: String,
@@ -19,8 +21,10 @@ fn init_config(c: &mut Config) -> MysqlConfig {
 
 impl MysqlConfig {
     pub async fn init_client(&self) {
-        Database::connect(ConnectOptions::new(&self.dsn))
+        let conn = Database::connect(ConnectOptions::new(&self.dsn))
             .await
             .unwrap();
+
+        DB.set(conn).unwrap();
     }
 }

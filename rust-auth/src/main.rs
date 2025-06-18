@@ -1,7 +1,7 @@
 mod pkg;
 
-use crate::pkg::db::mysql;
 use crate::pkg::config;
+use crate::pkg::db::mysql;
 
 #[tokio::main]
 async fn main() {
