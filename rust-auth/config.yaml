@@ -1,2 +1,2 @@
 mysql:
-  dsn: root:root123456@127.0.0.1:3306/aestival-auth?charset=utf8mb4&parseTime=True&loc=Local
+  dsn: mysql://root:root123456@127.0.0.1:3306/aestival-auth?charset=utf8mb4&parseTime=True&loc=Local

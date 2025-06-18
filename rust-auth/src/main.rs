@@ -1,7 +1,6 @@
 mod pkg;
 
 use crate::pkg::db::mysql;
-use crate::pkg::server;
 use pkg::config;
 
 #[tokio::main]
@@ -10,7 +9,7 @@ async fn main() {
     let mut c = config::load();
 
     // 2. init server components - 初始化组件
-    server::init(&mut c, &[mysql::init])
+    mysql::init(&mut c).await;
 
     // 3. load config configs - 加载业务配置
 
