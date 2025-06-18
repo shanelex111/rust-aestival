@@ -1,3 +1,18 @@
-fn main() {
-    println!("Hello, world!");
+mod pkg;
+
+use crate::pkg::db::mysql;
+use crate::pkg::server;
+use pkg::config;
+
+#[tokio::main]
+async fn main() {
+    // 1. load config - 加载配置文件
+    let mut c = config::load();
+
+    // 2. init server components - 初始化组件
+    server::init(&mut c, &[mysql::init])
+
+    // 3. load config configs - 加载业务配置
+
+    // 4. services run - 业务启动
 }
