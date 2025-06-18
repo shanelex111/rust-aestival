@@ -11,8 +11,8 @@ struct MysqlConfig {
 const DEFAULT_KEY: &str = "mysql";
 
 pub async fn init(c: &mut Config) {
-    let mc = init_config(c);
-    mc.init_client().await;
+    let cfg = init_config(c);
+    cfg.init_client().await;
 }
 
 fn init_config(c: &mut Config) -> MysqlConfig {
@@ -20,8 +20,8 @@ fn init_config(c: &mut Config) -> MysqlConfig {
 }
 
 impl MysqlConfig {
-    async fn init_client(&self) {
-        let conn = Database::connect(ConnectOptions::new(&self.dsn))
+    async fn init_client(self) {
+        let conn = Database::connect(ConnectOptions::new(self.dsn))
             .await
             .unwrap();
 

@@ -1,2 +1,14 @@
 mysql:
   dsn: mysql://root:root123456@127.0.0.1:3306/aestival-auth?charset=utf8mb4&parseTime=True&loc=Local
+
+redis:
+  addrs:
+    - 127.0.0.1:6379
+    - 127.0.0.1:6380
+    - 127.0.0.1:6381
+    - 127.0.0.1:6382
+    - 127.0.0.1:6383
+    - 127.0.0.1:6384
+  username: ""
+  password: "bitnami"
+  pool_size: 10
