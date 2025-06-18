@@ -20,7 +20,7 @@ fn init_config(c: &mut Config) -> MysqlConfig {
 }
 
 impl MysqlConfig {
-    pub async fn init_client(&self) {
+    async fn init_client(&self) {
         let conn = Database::connect(ConnectOptions::new(&self.dsn))
             .await
             .unwrap();
