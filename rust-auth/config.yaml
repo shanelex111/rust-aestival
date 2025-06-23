@@ -3,12 +3,9 @@ mysql:
 
 redis:
   addrs:
-    - 127.0.0.1:6379
-    - 127.0.0.1:6380
-    - 127.0.0.1:6381
-    - 127.0.0.1:6382
-    - 127.0.0.1:6383
-    - 127.0.0.1:6384
-  username: ""
-  password: "bitnami"
-  pool_size: 10
+    - redis://:bitnami@127.0.0.1:6379
+    - redis://:bitnami@127.0.0.1:6380
+    - redis://:bitnami@127.0.0.1:6381
+    - redis://:bitnami@127.0.0.1:6382
+    - redis://:bitnami@127.0.0.1:6383
+    - redis://:bitnami@127.0.0.1:6384

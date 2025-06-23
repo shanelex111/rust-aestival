@@ -3,7 +3,7 @@ use sea_orm::{ConnectOptions, Database, DatabaseConnection};
 use serde::Deserialize;
 use tokio::sync::OnceCell;
 
-pub static DB: OnceCell<DatabaseConnection> = OnceCell::const_new();
+static DB: OnceCell<DatabaseConnection> = OnceCell::const_new();
 #[derive(Debug, Deserialize)]
 struct MysqlConfig {
     dsn: String,
@@ -27,4 +27,8 @@ impl MysqlConfig {
 
         DB.set(conn).unwrap();
     }
+}
+
+pub fn get_db() -> &'static DatabaseConnection {
+    DB.get().unwrap()
 }
