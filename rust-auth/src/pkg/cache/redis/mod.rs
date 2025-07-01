@@ -3,8 +3,11 @@ use redis::cluster::ClusterClient;
 use redis::cluster_async::ClusterConnection;
 use serde::Deserialize;
 use tokio::sync::OnceCell;
-static RDB: OnceCell<ClusterConnection> = OnceCell::const_new();
+
 const DEFAULT_KEY: &str = "redis";
+
+static RDB: OnceCell<ClusterConnection> = OnceCell::const_new();
+
 #[derive(Debug, Deserialize)]
 struct RedisConfig {
     addrs: Vec<String>,
@@ -21,7 +24,7 @@ impl RedisConfig {
     async fn init_client(self) {
         let client = ClusterClient::new(self.addrs).unwrap();
         let conn = client.get_async_connection().await.unwrap();
-        if let Err(_) = RDB.set(conn) {}
+        let _ = RDB.set(conn);
     }
 }
 

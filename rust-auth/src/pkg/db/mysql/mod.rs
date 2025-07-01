@@ -3,12 +3,14 @@ use sea_orm::{ConnectOptions, Database, DatabaseConnection};
 use serde::Deserialize;
 use tokio::sync::OnceCell;
 
+const DEFAULT_KEY: &str = "mysql";
+
 static DB: OnceCell<DatabaseConnection> = OnceCell::const_new();
+
 #[derive(Debug, Deserialize)]
 struct MysqlConfig {
     dsn: String,
 }
-const DEFAULT_KEY: &str = "mysql";
 
 pub async fn init(c: &Config) {
     let cfg = init_config(c);
@@ -21,11 +23,11 @@ fn init_config(c: &Config) -> MysqlConfig {
 
 impl MysqlConfig {
     async fn init_client(self) {
-        let conn = Database::connect(ConnectOptions::new(self.dsn))
+        let conn = Database::connect(ConnectOptions::new(&self.dsn))
             .await
             .unwrap();
 
-        DB.set(conn).unwrap();
+        let _ = DB.set(conn);
     }
 }
 
