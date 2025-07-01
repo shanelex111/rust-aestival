@@ -10,12 +10,12 @@ struct MysqlConfig {
 }
 const DEFAULT_KEY: &str = "mysql";
 
-pub async fn init(c: &mut Config) {
+pub async fn init(c: &Config) {
     let cfg = init_config(c);
     cfg.init_client().await;
 }
 
-fn init_config(c: &mut Config) -> MysqlConfig {
+fn init_config(c: &Config) -> MysqlConfig {
     c.get::<MysqlConfig>(DEFAULT_KEY).unwrap()
 }
 

@@ -3,9 +3,9 @@ mysql:
 
 redis:
   addrs:
-    - redis://:bitnami@127.0.0.1:6379
-    - redis://:bitnami@127.0.0.1:6380
-    - redis://:bitnami@127.0.0.1:6381
-    - redis://:bitnami@127.0.0.1:6382
-    - redis://:bitnami@127.0.0.1:6383
-    - redis://:bitnami@127.0.0.1:6384
+    - redis://:aestival@127.0.0.1:6379
+    - redis://:aestival@127.0.0.1:6380
+    - redis://:aestival@127.0.0.1:6381
+    - redis://:aestival@127.0.0.1:6382
+    - redis://:aestival@127.0.0.1:6383
+    - redis://:aestival@127.0.0.1:6384

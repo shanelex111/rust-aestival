@@ -10,11 +10,11 @@ struct RedisConfig {
     addrs: Vec<String>,
 }
 
-pub async fn init(c: &mut Config) {
+pub async fn init(c: &Config) {
     let cfg = init_config(c);
     cfg.init_client().await;
 }
-fn init_config(c: &mut Config) -> RedisConfig {
+fn init_config(c: &Config) -> RedisConfig {
     c.get::<RedisConfig>(DEFAULT_KEY).unwrap()
 }
 impl RedisConfig {

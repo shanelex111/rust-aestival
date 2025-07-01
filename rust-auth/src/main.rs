@@ -8,12 +8,12 @@ use ::redis::AsyncTypedCommands;
 #[tokio::main]
 async fn main() {
     // 1. load config - 加载配置文件
-    let mut c = config::load();
+    let c = config::load();
 
     // 2. init server components - 初始化组件
-    mysql::init(&mut c).await;
+    mysql::init(&c).await;
 
-    redis::init(&mut c).await;
+    redis::init(&c).await;
     // 3. load config configs - 加载业务配置
 
     redis::get_db()
